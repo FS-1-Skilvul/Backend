@@ -11,7 +11,7 @@ module.exports = {
       },
       nama_kelas: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING,   
       },
       deskripsi: {
         allowNull: false,

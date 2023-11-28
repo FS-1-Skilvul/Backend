@@ -16,12 +16,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      {
-        nama_kategori: "Kategori 3",
-        deskripsi: "Description for Kategori 3",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
+   
     ]);
   },
 
