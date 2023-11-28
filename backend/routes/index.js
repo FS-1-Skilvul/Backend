@@ -14,6 +14,7 @@ route.use("/kelas", kelasRoutes);
 route.use("/kategori", kategoriRoutes);
 route.use("/daftar-kelas", daftarKelasRoutes);
 
+
 route.use("/auth", authRoute);
 route.use("/users", verifyToken, userRoute);
 route.use("/transaksi", transaksiRoute);
