@@ -1,11 +1,12 @@
 const db = require("./models");
 const express = require("express");
+const allRoutes = require("./routes");
+const cors = require('cors');
 const app = express();
 
-const allRoutes = require("./routes");
+app.use(cors());
 app.use(express.json());
 app.use(allRoutes);
-
 const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
