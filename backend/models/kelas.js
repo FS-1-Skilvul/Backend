@@ -41,14 +41,14 @@ module.exports = (sequelize, DataTypes) => {
      }
   );
   
-  console.log(`Model 'Kelas' is defined with table name: ${Kelas.getTableName()}`);
+//   console.log(`Model 'Kelas' is defined with table name: ${Kelas.getTableName()}`);
   
-  // Optionally, you can add a hook to log when synchronization occurs
-  sequelize.sync().then(() => {
-  console.log('Database synchronized successfully');
-}).catch((error) => {
-  console.error('Database synchronization failed:', error);
-});
+//   // Optionally, you can add a hook to log when synchronization occurs
+//   sequelize.sync().then(() => {
+//   console.log('Database synchronized successfully');
+// }).catch((error) => {
+//   console.error('Database synchronization failed:', error);
+// });
 
 return Kelas;
 };
