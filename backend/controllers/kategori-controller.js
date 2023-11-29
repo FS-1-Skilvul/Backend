@@ -80,7 +80,7 @@ module.exports = {
         },
       });
 
-      // if kelas not found
+      // if Kelas not found
       if (!oldKategori) {
         return res.status(404).json({ message: "Kategori not found" });
       }

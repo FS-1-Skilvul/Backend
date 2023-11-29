@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert("kategori_kelas", [
+    return queryInterface.bulkInsert("kategori_Kelas", [
       {
         nama_kategori: "Kategori 1",
         deskripsi: "Description for Kategori 1",

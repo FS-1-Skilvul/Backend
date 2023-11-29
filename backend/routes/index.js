@@ -6,13 +6,13 @@ const verifyToken = require("../middleware/token");
 
 const transaksiRoute = require("./transaksi-route");
 
-const kelasRoutes = require("./kelas-routes");
+const KelasRoutes = require("./Kelas-routes");
 const kategoriRoutes = require("./kategori-routes");
-const daftarKelasRoutes = require("./daftar-kelas-routes");
+const daftarKelasRoutes = require("./daftar-Kelas-routes");
 
-route.use("/kelas", kelasRoutes);
+route.use("/Kelas", KelasRoutes);
 route.use("/kategori", kategoriRoutes);
-route.use("/daftar-kelas", daftarKelasRoutes);
+route.use("/daftar-Kelas", daftarKelasRoutes);
 
 
 route.use("/auth", authRoute);

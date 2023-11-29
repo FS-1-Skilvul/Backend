@@ -6,7 +6,7 @@ module.exports = {
     return queryInterface.bulkInsert("Transaksis", [
       {
         id_user: 7,
-        id_kelas: 17,
+        id_Kelas: 17,
         tanggal_transaksi: new Date(),
         total: 20,
         createdAt: new Date(),
@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         id_user: 8,
-        id_kelas: 18,
+        id_Kelas: 18,
         tanggal_transaksi: new Date(),
         total: 20,
         createdAt: new Date(),
@@ -22,7 +22,7 @@ module.exports = {
       },
       {
         id_user: 7,
-        id_kelas: 20,
+        id_Kelas: 20,
         tanggal_transaksi: new Date(),
         total: 20,
         createdAt: new Date(),

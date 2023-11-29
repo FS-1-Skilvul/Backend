@@ -37,9 +37,9 @@ module.exports = {
   },
 
   createTransaksi: async (req, res) => {
-    const { id_user, id_kelas, tanggal_transaksi, total } = req.body;
+    const { id_user, id_Kelas, tanggal_transaksi, total } = req.body;
 
-    if (!id_user || !id_kelas || !tanggal_transaksi || !total) {
+    if (!id_user || !id_Kelas || !tanggal_transaksi || !total) {
       return res.status(400).json({
         message: "Incomplete data",
       });
@@ -48,7 +48,7 @@ module.exports = {
     try {
       await Transaksi.create({
         id_user,
-        id_kelas,
+        id_Kelas,
         tanggal_transaksi,
         total,
       });

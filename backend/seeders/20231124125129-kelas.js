@@ -3,10 +3,10 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert("kelas", [
+    return queryInterface.bulkInsert("Kelas", [
       {
         id_kategori: 1,
-        nama_kelas: "Pemasaran Sosial Media",
+        nama_Kelas: "Pemasaran Sosial Media",
         deskripsi:
           "Pelajari prinsip-prinsip dasar manajemen keuangan. Dari perencanaan anggaran hingga analisis laporan keuangan",
         harga: 90000,
@@ -22,7 +22,7 @@ module.exports = {
       },
       {
         id_kategori: 1,
-        nama_kelas: "Strategi Pemasaran Digital",
+        nama_Kelas: "Strategi Pemasaran Digital",
         deskripsi:
           "Pahami strategi pemasaran digital yang efektif meningkatkan visibilitas bisnis online. Dari SEO hingga pemasaran media sosial",
         harga: 100000,
@@ -38,7 +38,7 @@ module.exports = {
       },
       {
         id_kategori: 3,
-        nama_kelas: "Fundamentals Desain Produk",
+        nama_Kelas: "Fundamentals Desain Produk",
         deskripsi:
           "Pelajari dasar desain produk, dari konsepsi ide hingga prototipe, untuk menciptakan produk yang menarik dan fungsional",
         harga: 100000,
@@ -54,7 +54,7 @@ module.exports = {
       },
       {
         id_kategori: 2,
-        nama_kelas: "Membangun Brand yang Kuat",
+        nama_Kelas: "Membangun Brand yang Kuat",
         deskripsi:
           "Pahami tren pemasaran digital, termasuk penggunaan iklan online, email marketing, dan pemanfaatan influencer",
         harga: 70000,
@@ -70,7 +70,7 @@ module.exports = {
       },
       {
         id_kategori: 2,
-        nama_kelas: "Desain Produk Pemula",
+        nama_Kelas: "Desain Produk Pemula",
         deskripsi:
           "Pelajari langkah-langkah praktis untuk menciptakan produk dengan daya tarik visual yang membangun citra merk di pasaran",
         harga: 80000,

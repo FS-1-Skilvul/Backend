@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       // define association here
-      // many-to-many relation with kelas table using daftar_kelas as a junction table
+      // many-to-many relation with Kelas table using daftar_Kelas as a junction table
       User.belongsToMany(models.Kelas, {
-        through: "daftar_kelas",
+        through: "daftar_Kelas",
         foreignKey: "id_user",
       });
     }

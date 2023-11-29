@@ -10,7 +10,7 @@ const {
   editKelas,
   deleteKelasById,
   deleteAllKelas,
-} = require("../controllers/kelas-controller");
+} = require("../controllers/Kelas-controller");
 
 route.get("/", getAllKelas);
 route.get("/:id", getKelasById);

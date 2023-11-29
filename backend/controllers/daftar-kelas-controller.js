@@ -10,7 +10,7 @@ module.exports = {
         },
       });
       res.json({
-        message: "Success get all user kelas",
+        message: "Success get all user Kelas",
         data: userKelas,
       });
     } catch (error) {
@@ -50,9 +50,9 @@ module.exports = {
 
   addDaftarKelasByUserId: async (req, res) => {
     const userId = req.params.id;
-    const { id_kelas } = req.body;
+    const { id_Kelas } = req.body;
 
-    if (!id_kelas) {
+    if (!id_Kelas) {
       return res.status(400).json({
         message: "Incomplete data",
       });
@@ -61,12 +61,12 @@ module.exports = {
     try {
       await Daftar_Kelas.create({
         id_user: userId,
-        id_kelas,
+        id_Kelas,
         status_pendaftaran: "Belum Mulai",
       });
 
       res.status(201).json({
-        message: "Success create new daftar kelas",
+        message: "Success create new daftar Kelas",
       });
     } catch (error) {
       res.status(500).json({
@@ -87,7 +87,7 @@ module.exports = {
         },
       });
 
-      // if kelas not found
+      // if Kelas not found
       if (!oldKategori) {
         return res.status(404).json({ message: "Kategori not found" });
       }

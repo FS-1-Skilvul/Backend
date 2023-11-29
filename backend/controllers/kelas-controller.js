@@ -3,10 +3,10 @@ const { Kelas, sequelize } = require("../models");
 module.exports = {
   getAllKelas: async (req, res) => {
     try {
-      const kelas = await Kelas.findAll();
+      const Kelas = await Kelas.findAll();
       res.json({
-        message: "Success get all kelas",
-        data: kelas,
+        message: "Success get all Kelas",
+        data: Kelas,
       });
     } catch (error) {
       res.status(500).json({
@@ -17,23 +17,23 @@ module.exports = {
   },
 
   getKelasById: async (req, res) => {
-    const kelasId = req.params.id;
+    const KelasId = req.params.id;
     try {
-      const kelas = await Kelas.findOne({
+      const Kelas = await Kelas.findOne({
         where: {
-          id: kelasId,
+          id: KelasId,
         },
       });
 
-      // if kelas not found
-      if (!kelas) {
+      // if Kelas not found
+      if (!Kelas) {
         return res.status(404).json({ message: "Kelas not found" });
       }
 
-      // if kelas found
+      // if Kelas found
       res.json({
-        message: "Success get kelas",
-        data: kelas,
+        message: "Success get Kelas",
+        data: Kelas,
       });
     } catch (error) {
       res.status(500).json({
@@ -47,20 +47,20 @@ module.exports = {
     const query = req.params.query.toLowerCase();
 
     try {
-      const kelas = await Kelas.findAll({
+      const Kelas = await Kelas.findAll({
         where: {
-          nama_kelas: sequelize.where(
-            sequelize.fn("LOWER", sequelize.col("nama_kelas")),
+          nama_Kelas: sequelize.where(
+            sequelize.fn("LOWER", sequelize.col("nama_Kelas")),
             "LIKE",
             `%${query}%`
           ),
-          // convert kolom nama_kelas dalam db jadi lowercase, cari nama kelas secara case-insensitive
+          // convert kolom nama_Kelas dalam db jadi lowercase, cari nama Kelas secara case-insensitive
         },
       });
 
       res.json({
-        message: "Succes get kelas",
-        data: kelas,
+        message: "Succes get Kelas",
+        data: Kelas,
       });
     } catch (error) {
       res.status(500).json({
@@ -74,15 +74,15 @@ module.exports = {
     const idCategory = req.params.id;
 
     try {
-      const kelas = await Kelas.findAll({
+      const Kelas = await Kelas.findAll({
         where: {
           id_kategori: idCategory,
         },
       });
 
       res.json({
-        message: "Succes get kelas",
-        data: kelas,
+        message: "Succes get Kelas",
+        data: Kelas,
       });
     } catch (error) {
       res.status(500).json({
@@ -95,7 +95,7 @@ module.exports = {
   createKelas: async (req, res) => {
     const {
       id_kategori,
-      nama_kelas,
+      nama_Kelas,
       deskripsi,
       harga,
       gambar,
@@ -108,7 +108,7 @@ module.exports = {
 
     if (
       id_kategori == undefined ||
-      !nama_kelas ||
+      !nama_Kelas ||
       !deskripsi ||
       harga == undefined ||
       !gambar ||
@@ -126,7 +126,7 @@ module.exports = {
     try {
       await Kelas.create({
         id_kategori,
-        nama_kelas,
+        nama_Kelas,
         deskripsi,
         harga,
         gambar,
@@ -137,7 +137,7 @@ module.exports = {
         rating,
       });
       res.status(201).json({
-        message: "Success create new kelas",
+        message: "Success create new Kelas",
       });
     } catch (error) {
       res.status(500).json({
@@ -148,17 +148,17 @@ module.exports = {
   },
 
   editKelas: async (req, res) => {
-    const kelasId = req.params.id;
+    const KelasId = req.params.id;
     const updateData = req.body;
 
     try {
       const oldKelas = await Kelas.findOne({
         where: {
-          id: kelasId,
+          id: KelasId,
         },
       });
 
-      // if kelas not found
+      // if Kelas not found
       if (!oldKelas) {
         return res.status(404).json({ message: "Kelas not found" });
       }
@@ -166,7 +166,7 @@ module.exports = {
       await oldKelas.update(updateData);
 
       res.json({
-        message: "Success update kelas",
+        message: "Success update Kelas",
         data: updateData,
       });
     } catch (error) {
@@ -178,27 +178,27 @@ module.exports = {
   },
 
   deleteKelasById: async (req, res) => {
-    const kelasId = req.params.id;
+    const KelasId = req.params.id;
 
     try {
-      const kelasToDelete = await Kelas.findOne({
+      const KelasToDelete = await Kelas.findOne({
         where: {
-          id: kelasId,
+          id: KelasId,
         },
       });
 
-      if (!kelasToDelete) {
+      if (!KelasToDelete) {
         return res.status(404).json({ message: "Kelas not found" });
       }
 
       await Kelas.destroy({
         where: {
-          id: kelasId,
+          id: KelasId,
         },
       });
 
       res.json({
-        message: "Success delete kelas",
+        message: "Success delete Kelas",
       });
     } catch (error) {
       res.status(500).json({
@@ -213,7 +213,7 @@ module.exports = {
       await Kelas.truncate();
 
       res.json({
-        message: "Success delete all kelas",
+        message: "Success delete all Kelas",
       });
     } catch (error) {
       res.status(500).json({

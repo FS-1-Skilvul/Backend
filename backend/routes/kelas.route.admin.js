@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const kelasController = require('../controllers/kelas-controller');
+const KelasController = require('../controllers/Kelas-controller');
 const validateRole = require('../middleware/auth.admin');
 
 
-router.post('/kelas', validateRole, kelasController.createKelas);
+router.post('/Kelas', validateRole, KelasController.createKelas);
 
-// Rute untuk memperbarui kelas berdasarkan ID
-router.put('/kelas/:id', validateRole, kelasController.editKelas);
+// Rute untuk memperbarui Kelas berdasarkan ID
+router.put('/Kelas/:id', validateRole, KelasController.editKelas);
 
-// Rute untuk menghapus kelas berdasarkan ID
-router.delete('/kelas/:id', validateRole, kelasController.deleteKelasById);
+// Rute untuk menghapus Kelas berdasarkan ID
+router.delete('/Kelas/:id', validateRole, KelasController.deleteKelasById);
 
 module.exports = router;

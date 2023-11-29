@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "id_kategori",
       });
 
-      // many-to-many relation with user table using daftar_kelas as a junction table
+      // many-to-many relation with user table using daftar_Kelas as a junction table
       Kelas.belongsToMany(models.User, {
-        through: "daftar_kelas",
+        through: "Daftar_Kelas",
         foreignKey: "id_kelas",
       });
     }
@@ -34,10 +34,21 @@ module.exports = (sequelize, DataTypes) => {
       rating: DataTypes.FLOAT,
     },
     {
-      sequelize,
+      sequelize,  
       modelName: "Kelas",
-      tableName: "kelas",
-    }
+      // freezeTableName: true,
+      tableName: 'Kelas'
+     }
   );
-  return Kelas;
+  
+  console.log(`Model 'Kelas' is defined with table name: ${Kelas.getTableName()}`);
+  
+  // Optionally, you can add a hook to log when synchronization occurs
+  sequelize.sync().then(() => {
+  console.log('Database synchronized successfully');
+}).catch((error) => {
+  console.error('Database synchronization failed:', error);
+});
+
+return Kelas;
 };
