@@ -3,29 +3,14 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
-
-//     let data = req.body;
-//   let saltRounds = 10;
-//   let hashPassword = bcrypt.hashSync(data.password, saltRounds);
-
-//   data.password = hashPassword;
-//   const newUser = await User.create(data);
-//   res.json({
-//     message: "regis success",
-//     data: newUser,
-//   });
-
-// }
-
-      try{
-      const { nama, email, password, konfirmasi_password } = req.body;
-      if (!nama || !email || !password || !konfirmasi_password) {
-          return res.status(400).json({
-              status: 400,
-              message: "Data harus diisi",
-            });
-        }
-
+  try {
+    const { nama, email, password, konfirmasi_password } = req.body;
+    if (!nama || !email || !password || !konfirmasi_password) {
+      return res.status(400).json({
+        status: 400,
+        message: "Data harus diisi",
+      });
+    }
 
     const checkEmail = await User.findOne({ where: { email } });
     if (checkEmail) {
@@ -52,22 +37,21 @@ const registerUser = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-  
+
     let errorMessage = "Kesalahan server internal selama registrasi";
-  
+
     // Cetak pesan kesalahan spesifik jika tersedia
     if (error.message) {
       console.error("Pesan Kesalahan:", error.message);
       errorMessage += `: ${error.message}`;
     }
-  
+
     return res.status(500).json({
       status: 500,
       error: error.message, // atau gunakan error.stack untuk informasi stack trace
       message: errorMessage,
     });
   }
-  
 };
 
 const loginUser = async (req, res) => {
