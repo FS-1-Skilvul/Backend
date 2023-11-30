@@ -1,4 +1,4 @@
-const { Transaksi } = require("../models");
+const { Transaksi,Kelas } = require("../models");
 
 const getAllTransaksi = async (req, res) => {
     try {
@@ -80,6 +80,7 @@ const createTransaksi = async (req, res) => {
             data: dataTransaksi,
         });
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             status: 500,
             message: "Kesalahan server internal",
@@ -98,7 +99,7 @@ const updateTransaksi = async (req, res) => {
         }
 
         await Transaksi.update(
-            { tanggal_transaksi: new Date(), status: 1 },
+            { tanggal_pendaftaran: new Date(), status: 1 },
             {
                 where: {
                     id: req.params.id,
