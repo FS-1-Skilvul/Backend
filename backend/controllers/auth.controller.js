@@ -53,7 +53,7 @@ const registerUser = async (req, res) => {
   } catch (error) {
     console.error(error);
   
-    let errorMessage = "Kesalahan server internal selama registsrasi";
+    let errorMessage = "Kesalahan server internal selama registrasi";
   
     // Cetak pesan kesalahan spesifik jika tersedia
     if (error.message) {
