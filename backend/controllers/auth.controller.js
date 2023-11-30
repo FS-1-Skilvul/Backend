@@ -100,7 +100,6 @@ const logoutUser = (req, res) => {
   try {
     const { id, role } = req.payload;
     const invalidatedToken = jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: "1s" });
-
     return res.status(200).json({
       status: 200,
       message: "Logout anda berhasil",
