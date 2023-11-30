@@ -3,106 +3,132 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
-    try {
-        const { nama, email, password, konfirmasi_password } = req.body;
-        if (!nama || !email || !password || !konfirmasi_password) {
-            return res.status(400).json({
-                status: 400,
-                message: "Data harus diisi",
+
+//     let data = req.body;
+//   let saltRounds = 10;
+//   let hashPassword = bcrypt.hashSync(data.password, saltRounds);
+
+//   data.password = hashPassword;
+//   const newUser = await User.create(data);
+//   res.json({
+//     message: "regis success",
+//     data: newUser,
+//   });
+
+// }
+
+      try{
+      const { nama, email, password, konfirmasi_password } = req.body;
+      if (!nama || !email || !password || !konfirmasi_password) {
+          return res.status(400).json({
+              status: 400,
+              message: "Data harus diisi",
             });
         }
 
-        const checkEmail = await User.findOne({ where: { email } });
-        if (checkEmail) {
-            return res.status(400).json({
-                status: 400,
-                message: "Maaf Email anda sudah terdaftar",
-            });
-        }
 
-        if (password !== konfirmasi_password) {
-            return res.status(400).json({
-                status: 400,
-                message: "Password dan Konfirmasi Password tidak cocok",
-            });
-        }
-
-        const hashPassword = bcrypt.hashSync(password, 10);
-
-        const register = await User.create({ nama, email, password: hashPassword });
-        res.status(201).json({
-            status: 201,
-            message: "Registrasi anda berhasil",
-            data: register,
-        });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            status: 500,
-            message: "Kesalahan server internal selama registrasi",
-        });
+    const checkEmail = await User.findOne({ where: { email } });
+    if (checkEmail) {
+      return res.status(400).json({
+        status: 400,
+        message: "Maaf Email anda sudah terdaftar",
+      });
     }
+
+    if (password !== konfirmasi_password) {
+      return res.status(400).json({
+        status: 400,
+        message: "Password dan Konfirmasi Password tidak cocok",
+      });
+    }
+
+    const hashPassword = bcrypt.hashSync(password, 10);
+
+    const register = await User.create({ nama, email, password: hashPassword });
+    res.status(201).json({
+      status: 201,
+      message: "Registrasi anda berhasil",
+      data: register,
+    });
+  } catch (error) {
+    console.error(error);
+  
+    let errorMessage = "Kesalahan server internal selama registsrrasi";
+  
+    // Cetak pesan kesalahan spesifik jika tersedia
+    if (error.message) {
+      console.error("Pesan Kesalahan:", error.message);
+      errorMessage += `: ${error.message}`;
+    }
+  
+    return res.status(500).json({
+      status: 500,
+      error: error.message, // atau gunakan error.stack untuk informasi stack trace
+      message: errorMessage,
+    });
+  }
+  
 };
 
 const loginUser = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        if (!email || !password) {
-            return res.status(400).json({
-                status: 400,
-                message: "Data harus diisi",
-            });
-        }
-
-        const checkEmail = await User.findOne({ where: { email } });
-        if (!checkEmail) {
-            return res.status(400).json({
-                status: 400,
-                message: "Maaf Email anda tidak terdaftar",
-            });
-        }
-
-        const matchPassword = bcrypt.compareSync(req.body.password, checkEmail.password);
-        if (!matchPassword) {
-            return res.status(400).json({
-                status: 400,
-                message: "Maaf Password anda salah",
-            });
-        }
-
-        const accessToken = jwt.sign({ id: checkEmail.id, role: checkEmail.role }, process.env.JWT_SECRET, { expiresIn: "7d" });
-        return res.status(200).json({
-            status: 200,
-            message: "Login anda berhasil",
-            data: checkEmail,
-            token: accessToken,
-        });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            status: 500,
-            message: "Kesalahan server internal selama login",
-        });
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({
+        status: 400,
+        message: "Data harus diisi",
+      });
     }
+
+    const checkEmail = await User.findOne({ where: { email } });
+    if (!checkEmail) {
+      return res.status(400).json({
+        status: 400,
+        message: "Maaf Email anda tidak terdaftar",
+      });
+    }
+
+    const matchPassword = bcrypt.compareSync(req.body.password, checkEmail.password);
+    if (!matchPassword) {
+      return res.status(400).json({
+        status: 400,
+        message: "Maaf Password anda salah",
+      });
+    }
+
+    const accessToken = jwt.sign({ id: checkEmail.id, role: checkEmail.role }, process.env.JWT_SECRET, { expiresIn: "7d" });
+    return res.status(200).json({
+      status: 200,
+      message: "Login anda berhasil",
+      data: checkEmail,
+      token: accessToken,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: 500,
+      message: "Kesalahan server internal selama login",
+    });
+  }
 };
 
 const logoutUser = (req, res) => {
-    try {
-        const { id, role } = req.payload;
-        const invalidatedToken = jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: "1s" });
+  try {
+    const { id, role } = req.payload;
+    const invalidatedToken = jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: "1s" });
 
-        return res.status(200).json({
-            status: 200,
-            message: "Logout anda berhasil",
-            invalidatedToken: invalidatedToken,
-        });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            status: 500,
-            message: "Kesalahan server internal selama logout",
-        });
-    }
+    return res.status(200).json({
+      status: 200,
+      message: "Logout anda berhasil",
+      invalidatedToken: invalidatedToken,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: 500,
+      message: "Kesalahan server internal selama logout",
+    });
+  }
 };
 
 module.exports = { registerUser, loginUser, logoutUser };
