@@ -94,6 +94,7 @@ const getAllUser = async (req, res) => {
         return res.status(500).json({
             status: 500,
             message: "Kesalahan server internal selama ambil data user",
+            error: error.message,
         });
     }
 };

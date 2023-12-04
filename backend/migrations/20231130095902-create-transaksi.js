@@ -25,6 +25,8 @@ module.exports = {
             tanggal_pendaftaran: {
                 allowNull: true,
                 type: Sequelize.DATE,
+                defaultValue: new Date(),
+
             },
             status: {
                 allowNull: false,
