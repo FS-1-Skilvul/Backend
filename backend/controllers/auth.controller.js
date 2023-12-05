@@ -80,7 +80,7 @@ const loginUser = async (req, res) => {
       });
     }
 
-    const accessToken = jwt.sign({ id: checkEmail.id, role: checkEmail.role }, process.env.JWT_SECRET, { expiresIn: "7d" });
+    const accessToken = jwt.sign({ id: checkEmail.id, role: checkEmail.role }, process.env.JWT_SECRET, { expiresIn: "20d" });
     return res.status(200).json({
       status: 200,
       message: "Login anda berhasil",
