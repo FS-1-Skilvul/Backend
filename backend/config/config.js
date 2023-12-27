@@ -16,10 +16,10 @@ module.exports = {
     dialect: process.env.DB_DIALECT,
   },
   development: {
-    username: "sql12665737",
-    password: "9SiMJmWYhA",
-    database: "sql12665737",
-    host: "sql12.freemysqlhosting.net",
+    username: "freedb_final-project",
+    password: "86cxZD?2VXx?yFM",
+    database: "freedb_sahabat-umkm",
+    host: "sql.freedb.tech",
     dialect: "mysql",
   },
 };
